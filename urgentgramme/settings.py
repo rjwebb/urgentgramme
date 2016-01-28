@@ -26,8 +26,6 @@ SECRET_KEY = get_app_config().secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -43,6 +41,7 @@ INSTALLED_APPS = (
     'cspreports',
     'djangae.contrib.gauth.datastore',
     'djangae.contrib.security',
+    'photoviewer',
     # 'djangae.contrib.uniquetool',
 )
 
@@ -55,17 +54,6 @@ MIDDLEWARE_CLASSES = (
     'csp.middleware.CSPMiddleware',
     'session_csrf.CsrfMiddleware',
     'djangosecure.middleware.SecurityMiddleware',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages",
-    "session_csrf.context_processor"
 )
 
 SECURE_CHECKS = [
@@ -121,6 +109,29 @@ CSP_FRAME_SRC = ("'self'", "www.google.com", "www.youtube.com", "accounts.google
 CSP_SCRIPT_SRC = ("'self'", "*.googleanalytics.com", "*.google-analytics.com", "ajax.googleapis.com")
 CSP_IMG_SRC = ("'self'", "data:", "s.ytimg.com", "*.googleusercontent.com", "*.gstatic.com")
 CSP_CONNECT_SRC = ("'self'", "plus.google.com", "www.google-analytics.com")
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            'templates',
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                "django.contrib.auth.context_processors.auth",
+                "django.core.context_processors.debug",
+                "django.core.context_processors.i18n",
+                "django.core.context_processors.media",
+                "django.core.context_processors.static",
+                "django.core.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
+                "session_csrf.context_processor",
+            ],
+            'debug': True,
+        },
+    },
+]
 
 
 from djangae.contrib.gauth.settings import *
