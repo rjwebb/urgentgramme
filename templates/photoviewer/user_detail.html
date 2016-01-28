@@ -1,0 +1,6 @@
+{{ user.email }}
+<br />
+
+{% for photo in photos %}
+<a href="{% url 'photo-detail' pk=photo.pk %}"><img src='{{ photo.image.url }}' /></a><br />
+{% endfor %}

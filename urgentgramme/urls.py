@@ -6,10 +6,8 @@ session_csrf.monkeypatch()
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'urgentgramme.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+urlpatterns = patterns(
+    '',
     url(r'^_ah/', include('djangae.urls')),
 
     # Note that by default this is also locked down with login:admin in app.yaml
@@ -18,4 +16,7 @@ urlpatterns = patterns('',
     url(r'^csp/', include('cspreports.urls')),
 
     url(r'^auth/', include('djangae.contrib.gauth.urls')),
+
+    # the actual photo app
+    url(r'^', include('photoviewer.urls')),
 )
