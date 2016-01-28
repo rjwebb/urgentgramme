@@ -133,5 +133,8 @@ TEMPLATES = [
     },
 ]
 
+MEDIA_ROOT = './media/'
+
+MEDIA_URL = '/static/media/'
 
 from djangae.contrib.gauth.settings import *
